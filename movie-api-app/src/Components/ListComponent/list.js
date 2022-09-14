@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 
-const List = ({ state }) => {
+const List = ({ state, changeDetailsView }) => {
   const [listData, setListData] = useState(null);
   useEffect(() => {
     (async () => {
       setListData(null);
       const data = await getData(state.url);
-      if (data) {
+      if (data && data.results) {
         setListData(data);
       }
     })();
@@ -14,7 +14,10 @@ const List = ({ state }) => {
   var index = 0;
 
   const handleOptionClick = (e) => {
-    console.log(e.target);
+    const movie = listData.results.filter((item) => item.id == e.target.id)[0];
+    changeDetailsView({
+      movie: movie,
+    });
   };
 
   return (
