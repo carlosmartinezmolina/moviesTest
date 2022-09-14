@@ -6,7 +6,13 @@ const List = ({ state, changeDetailsView }) => {
     (async () => {
       setListData(null);
       const data = await getData(state.url);
+
       if (data && data.results) {
+        // // for(var i = 0;i < )
+        // const image = await getImage(
+        //   "https://image.tmdb.org/t/p/w185_and_h278_bestv2/pIkRyD18kl4FhoCNQuWxWu5cBLM.jpg"
+        // );
+        // console.log(image);
         setListData(data);
       }
     })();
@@ -32,6 +38,15 @@ const List = ({ state, changeDetailsView }) => {
                 key={index++}
                 className="list-group-item"
               >
+                <img
+                  className="pe-4"
+                  src={
+                    "https://image.tmdb.org/t/p/w185_and_h278_bestv2" +
+                    item.poster_path
+                  }
+                  alt=""
+                  height={100}
+                />
                 {item.title}
               </li>
             );
@@ -46,5 +61,10 @@ const getData = async (url) => {
   const resp = await fetch(url).then((response) => response.json());
   return resp;
 };
+
+// const getImage = async (url) => {
+//   const resp = await fetch(url).then((response) => response);
+//   return resp;
+// };
 
 export default List;
