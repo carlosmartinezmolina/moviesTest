@@ -8,11 +8,6 @@ const List = ({ state, changeDetailsView }) => {
       const data = await getData(state.url);
 
       if (data && data.results) {
-        // // for(var i = 0;i < )
-        // const image = await getImage(
-        //   "https://image.tmdb.org/t/p/w185_and_h278_bestv2/pIkRyD18kl4FhoCNQuWxWu5cBLM.jpg"
-        // );
-        // console.log(image);
         setListData(data);
       }
     })();
@@ -61,10 +56,5 @@ const getData = async (url) => {
   const resp = await fetch(url).then((response) => response.json());
   return resp;
 };
-
-// const getImage = async (url) => {
-//   const resp = await fetch(url).then((response) => response);
-//   return resp;
-// };
 
 export default List;
